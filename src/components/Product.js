@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   }, 
 }));
 
-export default function Product() {
+export default function Product({product : {id, name, productType, image, price, rating, description}}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -53,28 +53,27 @@ export default function Product() {
             variant="h5"
             color="textSecondary"
             >
-            {accounting.formatMoney(1000)}
+            {accounting.formatMoney(price)}
             </Typography>
         }
-        title="i brought you bullets, you brought me your love"
+        title={name}
         subheader="in stock"
       />
       <CardMedia
         className={classes.media}
-        image="https://m.media-amazon.com/images/I/81IpV2tCeNL._SL1000_.jpg"
-        title="Paella dish"
+        image={image}
+        title={name}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-         MCR ALBUM DEBUT
+         {productType}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to CART"  >
     <AddShoppingCart fontSize="large"/>
         </IconButton>
-        
-        {Array(4)
+        {Array(rating)
         .fill()
         .map((_, i) => (
           <p>&#11088;</p>
@@ -92,7 +91,7 @@ export default function Product() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>descripcion</Typography>
+          <Typography paragraph>{description}</Typography>
         </CardContent>
       </Collapse>
     </Card>
