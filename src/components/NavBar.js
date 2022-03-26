@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
 import logo from "../assets/logo.jpg";
 import Badge from "@material-ui/core/Badge";
+import{ Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,9 +39,12 @@ export default function NavBar() {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
+          <Link to="/">
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-             <img src={logo} className={classes.image}/>
+             <img src={logo} alt="commerce.js" height="25px" className={classes.image}/>
           </IconButton>
+          </Link>
+          
           <div className={classes.grow}/>
           <Typography variant="h6" color="textPrimary" component="p">
            hola invitado
@@ -49,13 +53,14 @@ export default function NavBar() {
             <Button variant="outlined">
                 <strong>Iniciar sesion </strong>
             </Button> 
-            <IconButton aria-label="show cart items" color="inherit">
+
+            <Link to="checkout-page">
+              <IconButton aria-label="show cart items" color="inherit">
               <Badge badgeContent={2} color="secondary"> 
                  <ShoppingCart fontSize="large" color="primary"/>
-              </Badge>
-             
+              </Badge>      
             </IconButton>
-          
+            </Link>
           </div>
         </Toolbar>
       </AppBar>
