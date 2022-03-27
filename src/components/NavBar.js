@@ -11,7 +11,9 @@ import logo from "../assets/logo.jpg";
 import Badge from "@material-ui/core/Badge";
 import{ Link} from "react-router-dom";
 import {useStateValue} from "../StateProvider";
-
+import {auth} from "../firebase";
+import {actionTypes} from "../reducer";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +38,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavBar() {
   const classes = useStyles();
-  const [{basket}, dispatch] = useStateValue();
+  const [{basket, user}, dispatch] = useStateValue();
+  const history = useHistory()
+
+  const handleAuth = () => {
+    if (user){
+      auth.signOut();
+      dispatch({
+        type: actionTypes.EMPTY_BASKET,
+        basket: [],
+      });
+      dispatch({
+        type: actionTypes.SET_USER,
+        user: null,
+      });
+      history.push("/")
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -50,12 +68,12 @@ export default function NavBar() {
           
           <div className={classes.grow}/>
           <Typography variant="h6" color="textPrimary" component="p">
-           hola invitado
+           Hola {user ? user.email : "Invitado"}
           </Typography>
           <div className={classes.button}>
             <Link to="/SignIn">
-              <Button variant="outlined">
-                <strong>Iniciar sesion </strong>
+              <Button variant="outlined" onClick={handleAuth}>
+                <strong>{user ? "Cerrar sesión" : "Iniciar sesión"}</strong>
             </Button> 
             </Link>
             
