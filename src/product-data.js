@@ -4,9 +4,9 @@ const products = [
         name: "I Brought You My Bullets, You Brought Me Your Love",
         productType: "album",
         price: 1000,
-        rating: 4,
+        rating: 3,
         image: "https://i.ebayimg.com/images/g/ojIAAOSwZExghuhO/s-l500.jpg",
-        description: "MCR ALBUM DEBUT"
+        description: "My Chemical Romance album debut"
 
     },
     {
@@ -16,29 +16,90 @@ const products = [
         price: 1700,
         rating: 5,
         image: "https://m.media-amazon.com/images/I/81vr2WI+qeL._SL1425_.jpg",
-        description: "mcr 2nd album"
+        description: "My Chemical Romance 2nd album"
 
     },    
     {
         id:3,
-        name: "mcr album debut",
+        name: "Ten",
         productType: "album",
         price: 1050,
         rating: 4,
-        image: "httpsekrtrjk",
-        description: "idk"
+        image: "https://m.media-amazon.com/images/I/81IIHrrH7PL._SL1500_.jpg",
+        description: "Pearl Jam album debut"
 
     },    
     {
         id:4,
-        name: "mcr album debut",
+        name: "Dirt",
         productType: "album",
         price: 2000,
-        rating: 3,
-        image: "httpsekrtrjk",
-        description: "mcr album debut"
+        rating: 5,
+        image: "https://lastfm.freetls.fastly.net/i/u/ar0/1b31aae0d18cc5161273e86eb1243ad3.jpg",
+        description: "Alice in Chains album"
 
     },    
+    {
+        id:5,
+        name: "Frogstomp",
+        productType: "album",
+        price: 2000,
+        rating: 4,
+        image: "https://i.ebayimg.com/images/g/RnMAAOSwQoxdNmFz/s-l1600.jpg",
+        description: "Silverchair album debut"
+
+    },  
+    {
+        id:6,
+        name: "Above",
+        productType: "album",
+        price: 1200,
+        rating: 3,
+        image: "https://i.discogs.com/8AbBEUdlU1dAYo3-h7uOZTdRs9ZOjOot7LFTEsWFxFM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2ODIz/NC0xMzE0OTMxODI0/LmpwZWc.jpeg",
+        description: "Mad Season album debut"
+
+    },  
+    {
+        id:7,
+        name: "Parlour",
+        productType: "album",
+        price: 950,
+        rating: 3,
+        image: "https://i.discogs.com/42OJeBTL-65GhDrR_WxEOOu8JPjCiazQsHrxhZMNmH8/rs:fit/g:sm/q:90/h:588/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0NDEz/ODYtMTM2NTkzMzMy/NC01OTMxLmpwZWc.jpeg",
+        description: "Darling Violetta album"
+
+    },  
+    {
+        id:8,
+        name: "Tiny Music... Songs from the Vatican Gift Shop",
+        productType: "album",
+        price: 3000,
+        rating: 5,
+        image: "https://www.nacionrock.com/wp-content/uploads/61B7vFLQL.jpg",
+        description: "Stone Temple Pilots"
+
+    },  
+    {
+        id:9,
+        name: "The Bends",
+        productType: "album",
+        price: 1900,
+        rating: 4,
+        image: "https://i0.wp.com/www.scienceofnoise.net/wp-content/uploads/2020/03/81tQyUIbitL._SL1500_.jpg",
+        description: "Radiohead album"
+
+    },  
+    {
+        id:10,
+        name: "So Tonight That I Might See",
+        productType: "album",
+        price: 1000,
+        rating: 3,
+        image: "https://i.discogs.com/L_naHnLBJX2LEsUYZCzetZRsgANazYOHeIcWXhDX7VM/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1OTc0/MDAtMTI5MjM5MTA4/Ni5qcGVn.jpeg",
+        description: "Mazzy Star album"
+
+    },  
+
 
 ]
 
