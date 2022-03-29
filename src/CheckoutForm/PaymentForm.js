@@ -33,12 +33,23 @@ const CARD_ELEMENT_OPTIONS = {
 
 const CheckoutForm = ({backStep, nextStep}) => {
   const[{basket}, dispatch] = useStateValue();
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    const {error, paymentMethod} = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement)
+    })
+      console.log(paymentMethod)
+  }
   return(
-    <form>
+    <form onSubmit={handleSubmit}>
       <CardElement options={CARD_ELEMENT_OPTIONS}/>
       <div style={{display:"flex", justifyContent: "space-between", marginTop: "1rem"}}>
         <Button variant="outlined" onClick={backStep}>Volver</Button>
-      <Button disable={true} type="submit" variant="contained" color="primary"> { `Pagar ${accounting.formatMoney(getBasketTotal(basket))}`} </Button>
+      <Button disable={false} type="submit" variant="contained" color="primary"> { `Pagar ${accounting.formatMoney(getBasketTotal(basket))}`} </Button>
       </div>
     
     </form>
