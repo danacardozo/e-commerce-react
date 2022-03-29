@@ -8,7 +8,7 @@ import {actionTypes} from "../reducer";
 
 const AddressForm = ({nextStep}) => {
   const methods = useForm();
-  const [{shippingData, dispatch}] =useStateValue();
+  const [{shippingData}, dispatch] = useStateValue();
   return (
     <>
     <Typography variant="h6" gutterBottom>

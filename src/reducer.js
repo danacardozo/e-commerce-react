@@ -49,7 +49,7 @@ const reducer = (state, action) => {
                 ...state,
                 user: action.user,
             }
-            case "SET_SHIPPINDATA":
+            case "SET_SHIPPINGDATA":
                 return {
                     ...state,
                     shippingData: action.shippingData,

@@ -1,49 +1,61 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import React from 'react'
+import Review from "./Review";
+import {Divider, Typography, Button} from "@material-ui/core"
+import {Elements, CardElement, useStripe, useElements} from "@stripe/react-stripe-js"
+import { loadStripe } from '@stripe/stripe-js'; 
+import { getBasketTotal } from '../reducer';
+import { useStateValue } from '../StateProvider';
+import { accounting } from 'accounting';
 
-export default function PaymentForm() {
-  return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Payment method
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Name on card" fullWidth autoComplete="cc-name" />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardNumber"
-            label="Card number"
-            fullWidth
-            autoComplete="cc-number"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField required id="expDate" label="Expiry date" fullWidth autoComplete="cc-exp" />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cvv"
-            label="CVV"
-            helperText="Last three digits on signature strip"
-            fullWidth
-            autoComplete="cc-csc"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
-          />
-        </Grid>
-      </Grid>
-    </React.Fragment>
-  );
+
+const stripePromise = loadStripe("pk_test_51KgDnlJfsxJYMQkqvbBBrjY3h1O70fw0Y9CXdpa4Zoh3LO0Apz4vR4pwM3ABWp3eoW6sODACglNJ44qEXH2JUWXw00zRgrSMrj");
+
+const CARD_ELEMENT_OPTIONS = {
+  iconStyle: "solid",
+  hidePostalCode: true,
+  style: {
+    base:{
+      iconColor: "rgb(240, 57, 122)",
+      color: "333",
+      fontSize: "18px",
+      "::placeholder": {
+        color: "#ccc",
+      },
+    },
+    invalid: {
+      color: "#e5424d",
+      ":focus": {
+        color: "#303238",
+      },
+    },
+  },
+};
+
+const CheckoutForm = ({backStep, nextStep}) => {
+  const[{basket}, dispatch] = useStateValue();
+  return(
+    <form>
+      <CardElement options={CARD_ELEMENT_OPTIONS}/>
+      <div style={{display:"flex", justifyContent: "space-between", marginTop: "1rem"}}>
+        <Button variant="outlined" onClick={backStep}>Volver</Button>
+      <Button disable={true} type="submit" variant="contained" color="primary"> { `Pagar ${accounting.formatMoney(getBasketTotal(basket))}`} </Button>
+      </div>
+    
+    </form>
+  )
 }
+
+const PaymentForm = ({backStep, nextStep}) => {
+  return (
+     <>
+     <Review/>
+     <Divider/>
+     <Typography variant="h6" gutterBottom style={{margin: "20px 0"}}>Metodo de pago</Typography>
+     <Elements stripe={stripePromise}>
+       <CheckoutForm backStep={backStep} nextStep={nextStep}/>
+     </Elements>
+     </>
+  )
+}
+
+export default PaymentForm
