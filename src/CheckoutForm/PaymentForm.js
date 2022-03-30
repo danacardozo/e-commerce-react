@@ -3,10 +3,10 @@ import Review from "./Review";
 import {Divider, Typography, Button} from "@material-ui/core"
 import {Elements, CardElement, useStripe, useElements} from "@stripe/react-stripe-js"
 import { loadStripe } from '@stripe/stripe-js'; 
-import { getBasketTotal } from '../reducer';
+import { getBasketTotal, actionTypes } from '../reducer';
 import { useStateValue } from '../StateProvider';
 import { accounting } from 'accounting';
-
+import {axios} from "axios"
 
 const stripePromise = loadStripe("pk_test_51KgDnlJfsxJYMQkqvbBBrjY3h1O70fw0Y9CXdpa4Zoh3LO0Apz4vR4pwM3ABWp3eoW6sODACglNJ44qEXH2JUWXw00zRgrSMrj");
 
@@ -32,7 +32,8 @@ const CARD_ELEMENT_OPTIONS = {
 };
 
 const CheckoutForm = ({backStep, nextStep}) => {
-  const[{basket}, dispatch] = useStateValue();
+  const[{basket, paymentMessage}, dispatch] = useStateValue();
+  
   const stripe = useStripe();
   const elements = useElements();
 
@@ -42,7 +43,37 @@ const CheckoutForm = ({backStep, nextStep}) => {
       type: "card",
       card: elements.getElement(CardElement)
     })
-      console.log(paymentMethod)
+      if(!error){
+
+        const {id} = paymentMethod;
+
+        try{
+          const {data} = await axios.post(
+            "http://localhost:3001/api/checkout", 
+          {
+          id,
+          amount: getBasketTotal(basket) * 100,
+        }) 
+        dispatch({
+          type: actionTypes.SET_PAYMENT_MESSAGE,
+          paymentMessage: data.message
+          
+        });
+        if (data.message === "Pago realizado con éxito") {
+          dispatch({
+            type: actionTypes.EMPTY_BASKET,
+            basket: [],
+          });
+        }
+        elements.getElement(CardElement).clear();
+        nextStep();
+      }
+        catch(error)
+        {console.log(error);
+          nextStep();
+        }
+       
+      }
   }
   return(
     <form onSubmit={handleSubmit}>
