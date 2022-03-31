@@ -10,7 +10,7 @@ const Checkout = () => {
   const classes = useStyles();
   const [activeStep, setActivestep] = useState(0);
   const [{paymentMessage}, dispatch] = useStateValue();
-  const steps = ["Shipping adress", "Payment details"];
+  const steps = ["Datos de envío", "Detalles de pago"];
 
   const nextStep = () => setActivestep((prevActivestep) => prevActivestep + 1);
   const backStep = () => setActivestep((prevActivestep) => prevActivestep - 1);

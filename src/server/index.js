@@ -6,7 +6,7 @@ const stripe = new Stripe("sk_test_51KgDnlJfsxJYMQkqBsHqDD8SdyU5XUshbt6Z1jTrupPV
 
 const app = express();
 
-app.use(cors({origin: "http://localhost:3000"}));
+app.use(cors({origin: "http://localhost:3000" }));
 app.use(express.json())
 
 app.post("/api/checkout", async (req, res ) => {
@@ -22,11 +22,12 @@ app.post("/api/checkout", async (req, res ) => {
            confirm: true,
        })
        console.log(payment);
-       return res.status(200).json({message: "Pago realizado con éxito"})
+       return res.status(200).json({message: "Pago realizado con éxito"});
     } catch(error){
        return res.json({message: error.raw.message})}
 })
 
 
-
-app.listen(3001, () => console.log("Servidor", 3001))
+app.listen(3001, () => {
+    console.log("Servidor", 3001);
+});

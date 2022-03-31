@@ -1,12 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Review from "./Review";
-import {Divider, Typography, Button} from "@material-ui/core"
+import {Divider, Typography, Button, CircularProgress} from "@material-ui/core"
 import {Elements, CardElement, useStripe, useElements} from "@stripe/react-stripe-js"
 import { loadStripe } from '@stripe/stripe-js'; 
 import { getBasketTotal, actionTypes } from '../reducer';
 import { useStateValue } from '../StateProvider';
 import { accounting } from 'accounting';
 import {axios} from "axios"
+
+
 
 const stripePromise = loadStripe("pk_test_51KgDnlJfsxJYMQkqvbBBrjY3h1O70fw0Y9CXdpa4Zoh3LO0Apz4vR4pwM3ABWp3eoW6sODACglNJ44qEXH2JUWXw00zRgrSMrj");
 
@@ -33,6 +35,7 @@ const CARD_ELEMENT_OPTIONS = {
 
 const CheckoutForm = ({backStep, nextStep}) => {
   const[{basket, paymentMessage}, dispatch] = useStateValue();
+  const [loading, setLoading] = useState(false);
   
   const stripe = useStripe();
   const elements = useElements();
@@ -41,12 +44,12 @@ const CheckoutForm = ({backStep, nextStep}) => {
     e.preventDefault();
     const {error, paymentMethod} = await stripe.createPaymentMethod({
       type: "card",
-      card: elements.getElement(CardElement)
+      card: elements.getElement(CardElement),
     })
+    setLoading(true);
+
       if(!error){
-
         const {id} = paymentMethod;
-
         try{
           const {data} = await axios.post(
             "http://localhost:3001/api/checkout", 
@@ -72,7 +75,7 @@ const CheckoutForm = ({backStep, nextStep}) => {
         {console.log(error);
           nextStep();
         }
-       
+       setLoading(false)
       }
   }
   return(
@@ -80,7 +83,11 @@ const CheckoutForm = ({backStep, nextStep}) => {
       <CardElement options={CARD_ELEMENT_OPTIONS}/>
       <div style={{display:"flex", justifyContent: "space-between", marginTop: "1rem"}}>
         <Button variant="outlined" onClick={backStep}>Volver</Button>
-      <Button disable={false} type="submit" variant="contained" color="primary"> { `Pagar ${accounting.formatMoney(getBasketTotal(basket))}`} </Button>
+      <Button disable={false} type="submit" variant="contained" color="primary"> 
+      {
+        loading ? (<CircularProgress/>) :
+       (`Pagar ${accounting.formatMoney(getBasketTotal(basket))}`)
+      } </Button>
       </div>
     
     </form>

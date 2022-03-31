@@ -9,7 +9,7 @@ const Review = () => {
   return (
      <>
      <Typography variant="h6" gutterBottom>
-       order summary
+       Resumen de pedido
      </Typography>
      <List disablePadding>
        {

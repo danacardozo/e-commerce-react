@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const Confirmation = ({message}) => {
   return (
     <>
-    <Typography variant="h6">{message}</Typography>
+    <Typography variant="h6">¡Pago realizado con éxito!</Typography>
     <Divider/>
     <Typography variant="subtitle2" gutterBottom>
         {
