@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/logo.png";
 import Badge from "@material-ui/core/Badge";
 import{ Link} from "react-router-dom";
 import {useStateValue} from "../StateProvider";
@@ -30,10 +30,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginLeft: theme.spacing(2),
   },
-  image: {
-   marginRight: "10px",
-   height: "1rem",
-  },
+ 
 }));
 
 export default function NavBar() {

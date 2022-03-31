@@ -64,7 +64,7 @@ export default function CheckoutCard({product : {id, name, productType, image, p
             </Typography>
         }
         title={name}
-        subheader="in stock"
+        subheader="En stock"
       />
       <CardMedia
         className={classes.media}

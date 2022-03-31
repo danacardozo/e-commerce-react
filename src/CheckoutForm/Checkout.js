@@ -22,7 +22,7 @@ const Checkout = () => {
     <main className={classes.layout}>
       <Paper className={classes.paper}>
         <Typography component="h1" variant="h4" align="center">
-          Checkout
+          Comprar
         </Typography>
         <Stepper activeStep={activeStep} className={classes.stepper}>
       {steps.map(step => (

@@ -12,7 +12,7 @@ const AddressForm = ({nextStep}) => {
   return (
     <>
     <Typography variant="h6" gutterBottom>
-      shipping address
+    Datos de envío
      </Typography>
      <FormProvider {...methods}>
      <form onSubmit={methods.handleSubmit(data => {
