@@ -81,6 +81,26 @@ const products = [
     },  
     {
         id:9,
+        name: "Milo Goes to College",
+        productType: "album",
+        price: 1200,
+        rating: 5,
+        image: "https://pm1.narvii.com/6771/478ecd2acb1956dae634a649db08accdf7777227v2_hq.jpg",
+        description: "Descendents album debut"
+
+    }, 
+    {
+        id:10,
+        name: "Kiss Me, Kiss Me, Kiss Me",
+        productType: "album",
+        price: 2600,
+        rating: 4,
+        image: "https://lastfm.freetls.fastly.net/i/u/770x0/033b256f69ce0e33d498e9c6b91d1af9.jpg",
+        description: "The Cure album"
+
+    }, 
+    {
+        id:11,
         name: "The Bends",
         productType: "album",
         price: 1900,
@@ -90,7 +110,7 @@ const products = [
 
     },  
     {
-        id:10,
+        id:12,
         name: "So Tonight That I Might See",
         productType: "album",
         price: 1000,

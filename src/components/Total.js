@@ -28,7 +28,7 @@ const Total = () => {
         <h5>Total items: {basket?.length}</h5>
         <h5>{accounting.formatMoney(getBasketTotal(basket),)}</h5>
         
-        <Button className={classes.button} component={Link} to="/checkout" variant="contained" color="secondary">Check out</Button>
+        <Button className={classes.button} component={Link} to="/checkout" variant="contained" color="secondary">Comprar</Button>
        
     </div>
     )
