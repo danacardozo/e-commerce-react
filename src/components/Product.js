@@ -75,7 +75,7 @@ export default function Product({product : {id, name, productType, image, price,
             </Typography>
         }
         title={name}
-        subheader="in stock"
+        subheader="En stock"
       />
       <CardMedia
         className={classes.media}

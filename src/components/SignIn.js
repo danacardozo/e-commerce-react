@@ -20,8 +20,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://danacardozo.github.io/e-commerce-react">
+        Dana Cardozo E-Commerce
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -68,7 +68,7 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Iniciar Sesión
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -79,7 +79,7 @@ export default function SignIn() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="Email"
             name="email"
             autoComplete="email"
             autoFocus
@@ -92,14 +92,14 @@ export default function SignIn() {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Contraseña"
             type="password"
             id="password"
             autoComplete="current-password"
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label="Recuerdame"
           />
           <Button
             type="submit"
@@ -109,17 +109,17 @@ export default function SignIn() {
             className={classes.submit}
             onClick={signin}
           >
-            Sign In
+            Iniciar Sesión
           </Button>
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
-                Forgot password?
+                ¿Olvidaste tu contraseña?
               </Link>
             </Grid>
             <Grid item>
               <RouteLink to="signup">
-                {"Don't have an account? Sign Up"}
+                {"¿No estás registrado? Registrate"}
               </RouteLink>
             </Grid>
           </Grid>
