@@ -11,9 +11,11 @@ import logo from "../assets/logo.png";
 import Badge from "@material-ui/core/Badge";
 import{ Link} from "react-router-dom";
 import {useStateValue} from "../StateProvider";
-import {auth} from "../firebase";
 import {actionTypes} from "../reducer";
 import {useHistory} from "react-router-dom";
+import firebaseApp from '../firebase';
+import { getAuth, signOut } from 'firebase/auth';
+const auth = getAuth(firebaseApp);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +40,7 @@ export default function NavBar() {
   const [{basket, user}, dispatch] = useStateValue();
   const history = useHistory()
 
+  //cerrar sesion
   const handleAuth = () => {
     if (user){
       auth.signOut();

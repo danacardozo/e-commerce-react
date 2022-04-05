@@ -13,7 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Link as RouteLink, useHistory} from "react-router-dom";
-import {auth} from "../firebase";
+import firebaseApp from "../firebase"
+import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+const auth = getAuth(firebaseApp);
 
 function Copyright() {
   return (
@@ -54,9 +56,10 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const history = useHistory();
 
-  const signup = (e) => {
+  //registrarse
+  async function signup (e) {
     e.preventDefault();
-    auth.createUserWithEmailAndPassword(email,password).then((auth)=> {
+    const infoUsuario = await createUserWithEmailAndPassword(auth, email,password).then((auth)=> {
       console.log(auth);
       if (auth){
         history.push("/");

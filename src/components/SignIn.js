@@ -13,8 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Link as RouteLink, useHistory} from "react-router-dom";
-import {auth} from "../firebase";
-
+import firebaseApp from '../firebase';
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+const auth = getAuth(firebaseApp);
 
 function Copyright() {
   return (
@@ -49,15 +50,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//iniciar sesion
 export default function SignIn() {
   const classes = useStyles();
   const [email,setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
 
-  const signin = (e) =>{
+  async function signin (e) {
     e.preventDefault();
-    auth.signInWithEmailAndPassword(email,password).then((auth)=>history.push("/")).catch(err=>alert(err.message))
+    const infoUsuario = await signInWithEmailAndPassword(auth, email,password).then((auth)=>history.push("/")).catch(err=>alert(err.message))
   }
 
   return (
